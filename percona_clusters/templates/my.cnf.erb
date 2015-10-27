@@ -1,0 +1,52 @@
+[mysqld]
+
+datadir=<%=data_dir%>
+
+user=mysql
+
+# Path to Galera library
+
+wsrep_provider=<%=wsrep_provider%>
+
+# Cluster connection URL contains the IPs of nodes
+
+wsrep_cluster_address=gcomm://<%=node_ips%>
+
+# In order for Galera to work correctly binlog format should be ROW
+
+binlog_format=ROW
+
+# MyISAM storage engine has only experimental support
+default_storage_engine=InnoDB
+
+# This changes how InnoDB auto increment locks are managed and is a requirement for Galera
+innodb_autoinc_lock_mode=2
+
+wsrep_node_address=<%=wsrep_node_address%>
+
+# SST method
+wsrep_sst_method=<%=wsrep_sst_method%>
+
+# wsrep_sst_method=xtrabackup #
+# wsrep_sst_method=rsync      #
+# wsrep_sst_method=rsync_wan  #
+# wsrep_sst_method=mysqldump  # SLOW
+
+# Cluster name
+wsrep_cluster_name=<%=wsrep_cluster_name%>
+
+# Authentication for SST method
+
+wsrep_sst_auth="<%=wsrep_sst_auth_user%>:<%=wsrep_sst_auth_password%>"
+
+
+#Mysql Perormance Settings 
+
+query_cache_limit=<%=query_cache_limit%>
+max_allowed_packet=<%=max_allowed_packet%> 
+table_open_cache=<%=table_open_cache%>
+max-connections=<%=max_connections%>
+innodb_buffer_pool_size = <%=innodb_buffer_pool_size%>
+innodb_flush_log_at_trx_commit = <%=innodb_flush_log_at_trx_commit%>
+innodb_lock_wait_timeout= <%=innodb_lock_wait_timeout%>
+
