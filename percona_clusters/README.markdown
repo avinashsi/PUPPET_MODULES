@@ -4,6 +4,7 @@ This is the percona_clusters module. It provides...
                                                                        
 ![Architecture](https://github.com/avinashsi/images/blob/master/logo_percona_xtradbcluster_new.png)
 
+
 ####Table of Contents
 
 1. [Overview](#overview)
@@ -32,7 +33,7 @@ across a the nodes .
 
 ###Beginning with percona_clusters
 
-You haves to pass in parameters from nodes.pp file in order to run this module. Below is the e.g. showing that
+You haves to pass in parameters from nodes.pp file in order to run this module. Below is the e.g. showing for the bootstrap node
 
 ```puppet
 
@@ -41,21 +42,68 @@ node "node1.com"
 
  include percona_clusters
     percona_clusters::instance {'node1':
-        node_ips => '192.168.111.11,192.168.111.12,192.168.111.13',
+        node_ips => '192.168.111.11:4567,192.168.111.12:4567,192.168.111.13:4567',
         wsrep_node_address => '192.168.111.11',
         wsrep_sst_auth_user => 'root',
-        wsrep_sst_auth_password =>'paxcel@123',
-        port =>'4567',
+        wsrep_sst_auth_password =>'paxcel123',
         wsrep_cluster_name => 'paxcel',
         wsrep_sst_method =>'xtrabackup',
-        table_open_cache =>'10000',
-        max_connections =>'150',
+        table_open_cache =>'100',
+        max_connections =>'15',
         innodb_buffer_pool_size =>'512',
-        innodb_lock_wait_timeout =>'150',
+        innodb_lock_wait_timeout =>'15',
        }
+
+    exec {'boot_strap_cluster':
+        path => ['/usr/bin', '/usr/sbin', '/bin', '/sbin',],
+        command => "/etc/init.d/mysql bootstrap-pxc",
+        subscribe   => File["/etc/my.cnf"],
+        refreshonly => true,
+        require => Class['percona_clusters'],
+        }
+
+  exec { 'create-root-password' :
+        path => ['/usr/bin', '/usr/sbin', '/bin', '/sbin',],
+        onlyif  => "mysqladmin -u root status",
+        command => "mysqladmin -u root password paxcel123",
+        require => Exec['boot_strap_cluster'],
+        }
+
 }
+
 ```
 
+For agent nodes 
+
+```puppet
+
+node "node2.com"
+{
+ include percona_clusters
+    percona_clusters::instance {'node2':
+        node_ips => '192.168.111.11:4567,192.168.111.12:4567,192.168.111.13:4567',
+        wsrep_node_address => '192.168.111.12',
+        wsrep_sst_auth_user => 'root',
+        wsrep_sst_auth_password =>'paxcel123',
+        wsrep_cluster_name => 'paxcel',
+        wsrep_sst_method =>'xtrabackup',
+        table_open_cache =>'100',
+        max_connections =>'15',
+        innodb_buffer_pool_size =>'512',
+        innodb_lock_wait_timeout =>'15',
+       }
+
+    exec {'start_node2':
+        path => ['/usr/bin', '/usr/sbin', '/bin', '/sbin',],
+        command => "/etc/init.d/mysql start",
+        subscribe   => File["/etc/my.cnf"],
+        refreshonly => true,
+        require => Class['percona_clusters'],
+        }
+
+}
+
+```
 
 ###Parameters
 
@@ -64,8 +112,7 @@ The following parameters are available in the percona_clusters module which are 
 ####`node_ips`
 
 Specify $node_ips which you want include inside your mysql cluster seprated by comma this is mandatory field
-e.g 192.168.111.1,192.168.111.2,192.168.111.3
-
+e.g 192.168.111.11:4567,192.168.111.12:4567,192.168.111.13:4567
 ####`port`
 
 Specify port on which you want to run mysql percona xtaradb cluster will use to communincate between them
@@ -94,7 +141,7 @@ Specify the wsrep_sst_auth_password ,specify the password for mysql user
 
 Specify the table_open_cache
 
-####`max_connections
+####`max_connections`
 
 Specify the max_connections
  
@@ -126,13 +173,6 @@ Specify the max_allowed_packet default value is there 200M
 
 Specify the innodb_flush_log_at_trx_commit
 
-Parameter to be defined inside init.pp.
-
-####`percona_version`
-
-Define percona cluster version  here for percona 5.5 use 5.5 for percona5.6 use 5.6 
-
-Specify percona_version
 
 
 ##Limitations
@@ -143,27 +183,5 @@ The module has been tested on:
 
 * RedHat Enterprise Linux 5/6
 * CentOS 5/6
-
-
-##Development
-
-Puppet Labs modules on the Puppet Forge are open projects, and community
-contributions are essential for keeping them great. We can�t access the
-huge number of platforms and myriad of hardware, software, and deployment
-configurations that Puppet is intended to serve.
-
-We want to keep it as easy as possible to contribute changes so that our
-modules work in your environment. There are a few guidelines that we need
-contributors to follow so that we can have a chance of keeping on top of things.
-
-You can read the complete module contribution guide [on the Puppet Labs wiki.](http://projects.puppetlabs.com/projects/module-site/wiki/Module_contributing)
-
-###Contributors
-
-The list of contributors can be found at: [https://github.com/BoxUpp/Puppet-Modules/graphs](https://github.com/BoxUpp/Puppet-Modules/graphs)
-
-##Sites
-####site :[http://paxcel.net/](http://paxcel.net/) 
-####site :[http://boxupp.com/](http://boxupp.com/)
 
 All trademarks and registered trademarks are the property of their respective owners.
