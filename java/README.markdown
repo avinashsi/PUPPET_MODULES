@@ -72,7 +72,7 @@ The module has been tested on:
 ##Development
 
 Puppet Labs modules on the Puppet Forge are open projects, and community
-contributions are essential for keeping them great. We can�t access the
+contributions are essential for keeping them great. We can't access the
 huge number of platforms and myriad of hardware, software, and deployment
 configurations that Puppet is intended to serve.
 
