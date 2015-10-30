@@ -1,0 +1,10 @@
+{
+  "LICENSE": "57f5b60b5705eb130c833af60a6167a6",
+  "tests/init.pp": "dd5e6c6c8cc896ee6d10ea6ec5cd791f",
+  "manifests/instance.pp": "67a27dae617a9eb2e6ed972836d59309",
+  "README.md": "5fcb5a25141ed47a77624853e8501111",
+  "spec/spec_helper.rb": "09ccbe4bbe4503df6281e6ec7977973d",
+  "README": "263bf1be3c0d20ddce97b4e4654e3614",
+  "metadata.json": "3aeeb7ce66a77b8f2ebf67ae0828a8b8",
+  "manifests/init.pp": "bf0e778c4c9db3d1b4cb16e21802e521"
+}

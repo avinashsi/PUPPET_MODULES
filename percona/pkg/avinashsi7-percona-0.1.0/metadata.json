@@ -1,0 +1,37 @@
+{
+  "name": "avinashsi7-percona",
+  "version": "0.1.0",
+  "author": "Avinash Kumar Singh",
+  "summary": "This is a puppet module to install percona-backup.A backup utilty tool for  mysql database server.",
+  "license": "Apache License, Version 2.0",
+  "source": "https://github.com/avinashsi/puppet_modules",
+  "operatingsystem_support": [
+    {
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ],
+      "operatingsystem": "RedHat"
+    },
+    {
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ],
+      "operatingsystem": "CentOS"
+    }
+  ],
+  "tags": [
+    "mysql_backup",
+    "backup-database",
+    "db backup",
+    "percona"
+  ],
+  "issues_url": "https://github.com/avinashsi/puppet_modules/issues",
+  "project_page": "http://avinashsi.github.io/devops/",
+  "dependencies": [
+  
+  ]
+}
