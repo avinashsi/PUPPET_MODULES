@@ -1,0 +1,39 @@
+{
+  
+  "version": "0.1.0",
+  "summary": "Installs, deploys, and configures Apache Tomcat web services.",
+  "source": "https://github.com/avinashsi/puppet_modules",
+  "author": "Avinash Kumar Singh",
+  "dependencies": [  { "name": "avinashsi7/java", "version_requirement": "=0.1.0" }],
+  "license": "Apache 2.0",
+  "name": "avinashsi7-tomcat",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+      {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    }
+  ],
+  "project_page": "http://avinashsi.github.io/devops/",
+  "requirements": [],
+   "tags": ["tomcat", "tomcat8","tomcat7", "web-serever"],
+  "version": "0.1.0"
+}
