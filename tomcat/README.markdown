@@ -1,4 +1,4 @@
-# tomcat #
+# Tomcat #
 
 This is the tomcat module. It provides following
 
