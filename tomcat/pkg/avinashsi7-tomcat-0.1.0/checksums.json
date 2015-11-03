@@ -1,0 +1,15 @@
+{
+  "metadata.json": "baf73a6794a217d32d03dd1392127d46",
+  "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+  "LICENCE": "f0b6fdc310531526f257378d7bad0044",
+  "templates/tomcat.erb": "e96693ae9a8cc18963a9d0e6ecc58e5f",
+  "templates/server8.xml.erb": "4b278035fdf62103b48db421e658c046",
+  "tests/init.pp": "551af72a1a5aca74ceae76cb7a238044",
+  "LICENSE": "57f5b60b5705eb130c833af60a6167a6",
+  "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
+  "manifests/instance.pp": "ce278013d152baec1616f27ed4ca529e",
+  "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+  "manifests/init.pp": "ee16b029ca10907be7c1dd1386983e75",
+  "templates/server7.xml.erb": "ee93c34a581a1aebd358b80f38e51d19",
+  "README.markdown": "300a4172498e8b37f8b5b6b8c2dd99e0"
+}
